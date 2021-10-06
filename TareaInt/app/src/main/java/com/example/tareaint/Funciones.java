@@ -5,6 +5,7 @@ import static androidx.core.app.ActivityCompat.finishAffinity;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 
 
 import androidx.appcompat.app.AlertDialog;
@@ -38,6 +39,11 @@ public class Funciones {
     public void Logout(Activity activity){
         Intent i = new Intent(activity, MainActivity.class);
         activity.startActivity(i);
+    }
+
+    public String getURL (String id){
+
+        return Uri.parse("android.resource://"+R.class.getPackage().getName()+"/drawable/"+id).toString();
     }
 
 

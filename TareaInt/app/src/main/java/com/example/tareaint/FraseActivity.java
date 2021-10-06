@@ -2,6 +2,7 @@ package com.example.tareaint;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,7 @@ public class FraseActivity extends AppCompatActivity implements View.OnClickList
 
     String name, genre;
     TextView dataName, txtFrase;
-    Button btnExit, btnLogout;
+    Button btnExit, btnLogout, btnSFrase;
     Funciones f = new Funciones();
 
 
@@ -29,9 +30,11 @@ public class FraseActivity extends AppCompatActivity implements View.OnClickList
         dataName = findViewById(R.id.txtData2);
         btnExit = findViewById(R.id.btnExit4);
         btnLogout = findViewById(R.id.btnLogout3);
+        btnSFrase = findViewById(R.id.btnSFrase);
 
         btnExit.setOnClickListener(this);
         btnLogout.setOnClickListener(this);
+        btnSFrase.setOnClickListener(this);
 
         name = getIntent().getStringExtra("name");
         genre = getIntent().getStringExtra("genre");
@@ -93,6 +96,16 @@ t = "Eres un ser increíble, diste lo mejor de ti y por eso te admiro. Pasaste p
                 break;
             case R.id.btnLogout3:
                 f.Logout(this);
+                break;
+            case R.id.btnSFrase:
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, txtFrase.getText());
+                sendIntent.setType("text/plain");
+               Intent shareIntent = Intent.createChooser(sendIntent, null);
+               startActivity(shareIntent);
+
+
                 break;
 
 
